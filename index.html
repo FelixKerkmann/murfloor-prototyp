@@ -2,17 +2,44 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Hello, World! - A-Frame</title>
-    <meta name="description" content="Hello, World! - A-Frame">
+    <title>Murfloor Prototype</title>
+    <meta name="description" content="Murfloor Prototype">
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="components/floor.js"></script>
+    <script src="components/wall.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-assets>
+        <!-- Textures -->
+        <img id="wood-floor" src="resources/textures/wood_floor.jpg">
+        <img id="wood-floor-2" src="resources/textures/wood_floor_2.jpg">
+        <img id="tiles" src="resources/textures/tiles.jpg">
+        <img id="tiles-pattern" src="resources/textures/tiles_pattern.jpg">
+        <img id="stones" src="resources/textures/stones.jpg">
+        <img id="concrete" src="resources/textures/concrete.png">
+      </a-assets>
+
+      <!-- Room -->
+      <a-box class="wall" position="0 2.5 -9" rotation="0 0 0" color="lightgrey" width="10" height="5" change-wall-color></a-box>
+      <a-box class="wall" position="0 2.5 1" rotation="0 0 0" color="lightgrey" width="10" height="5" change-wall-color></a-box>
+      <a-box class="wall" position="-5 2.5 -4" rotation="0 90 0" color="lightgrey" width="10" height="5" change-wall-color></a-box>
+      <a-box class="wall" position="5 2.5 -4" rotation="0 90 0" color="lightgrey" width="10" height="5" change-wall-color></a-box>
+
+      <a-text value="Click to change floor" position="4.5 2.5 -5" rotation="0 -90 0" line-height="20" color="white"></a-text>
+      <a-box position="4.75 2 -4" rotation="0 -90 0" width="0.5" height="0.5" change-floor-texture></a-box>
+      <a-plane  id="floor"
+                position="0 0 -4"
+                rotation="-90 0 0"
+                src="#wood-floor"
+                height="10"
+                width="10"
+                material="repeat: 10 10"
+                change-floor-texture></a-plane>
       <a-sky color="#ECECEC"></a-sky>
+      <a-camera>
+        <a-cursor></a-cursor>
+      </a-camera>
     </a-scene>
   </body>
 </html>
